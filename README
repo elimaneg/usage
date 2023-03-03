@@ -1,0 +1,45 @@
+# Cadre de deveoppement Depot des scripts day2 v2.
+
+## Organisation
+Chaque produit est represente par un repertoire.
+Chaque repertoire doit contenir:
+ - install: script a executer pour installer le produit
+ - update: script a executer pour mettre a jour le produit
+ - delete: script a executer pour desinstaller le produit
+
+## Resonsabilites:
+
+Le(s) responsable(s) du produit:
+ - utilise les outils, les languages, les technologies qu'il trouve adapte au besoin.
+ - installe les outils ncessaires a la bonne execution des phases install, update, delete
+ - assure la bonne sante de son produit sur tous les clusters (ou le produit roule)
+ - documente un minimum son produit dans produit/readme (+ confluence)
+
+## Flux de travail git:
+
+ - Commencer par cloner le depot (Ou mettre a jour le depot local pour recuperer les derniers commits)
+ - Creer une branche qui reference la tache Jira
+ - Effectuer son developpement/test/bugfix/evolution (sur un cluster de non prod)
+ - - Ajouter le produit s'il n'est pas deja dans la liste (produits.txt)
+ - - Creer/Ajouter les artefacts (charts helm, manifest Kubernetes, scripts, code...) pour supporter votre developpement
+ - - ... 
+ - Creer une demande de fusion (Merge request) afin que le code soit revise par un pair avant fusion
+ - Si le MR est accepte la branche est fusionnee dans master (supprimer la branche de travail)
+
+## Bon usage:
+
+ - Ne pas stocker d'information sensible dans Git
+ - Commenter les parties complexes
+ - Produire du code uniforme (executable de la meme facon partout)
+ - Support du mode offline/deconnecte
+ - Inclure des tests de verification dans chaque phase
+ - ...
+
+## Operations:
+ 
+ - Rouler /bin/sh install pour installer tous les produits sur un cluster
+ - Rouler /bin/sh produit/install pour installer un produit sur un cluster
+ - Rouler /bin/sh update pour mettre a jour tous les produits sur un cluster
+ - Rouler /bin/sh produit/update pour mettre a jour le produit sur un cluster
+ - Rouler /bin/sh delete pour supprimer tous les produits sur un cluster
+ - Rouler /bin/sh produit/delete pour supprimer le produit sur un cluster

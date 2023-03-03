@@ -1,0 +1,11 @@
+#!/bin/bash
+
+PRODUITS=./produits.txt
+
+while IFS= read -r _produit; do
+  if [ -f ${_service}/install ]; then
+    echo "Execution du script d'installation du produit ${_produit}"
+  else
+    echo "Le produit ${_produit} n'a pas de script d'installation = Rien a faire"
+  fi   
+done  < <(cat "${PRODUITS}"|sed -e /^$/d|grep -E -v "^#")

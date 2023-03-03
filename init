@@ -1,0 +1,8 @@
+#!/bin/bash
+
+PRODUITS=./produits.txt
+
+while IFS= read -r _produit; do
+  mkdir -p ${_produit}
+  touch ${_produit}/readme ${_produit}/install ${_produit}/update ${_produit}/delete  
+done  < <(cat "${PRODUITS}"|sed -e /^$/d|grep -E -v "^#")
